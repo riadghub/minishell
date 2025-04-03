@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:13:58 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/02 14:34:21 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:54:11 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	echo_builtin(char **args)
 {
-	bool	no_newline;
+	bool	n;
 	int		i;
 
-	no_newline = false;
+	n = false;
 	i = 1;
 	while (args[i] && ft_strcmp(args[i], "-n") == 0)
 	{
-		no_newline = true;
+		n = true;
 		i++;
 	}
 	while (args[i])
@@ -31,7 +31,7 @@ void	echo_builtin(char **args)
 			printf(" ");
 		i++;
 	}
-	if (!no_newline)
+	if (!n)
 		printf("\n");
 }
 
@@ -59,4 +59,71 @@ void	pwd_builtin(void)
 		printf("%s\n", cwd);
 	else
 		perror("pwd");
+}
+
+void	export_builtin(char **args, t_env *env)
+{
+	int	i;
+
+	i = 0;
+	if (!args[1])
+	{
+		while (env->vars[i])
+		{
+			printf("%s\n", env->vars[i]);
+			i++;
+		}
+		return ;
+	}
+	i = 1;
+	while (args[i])
+	{
+		putenv(args[i]);
+		i++;
+	}
+}
+
+void	unset_builtin(char **args, t_env *env)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 1;
+	while (args[i])
+	{
+		j = 0;
+		while (env->vars[j])
+		{
+			if (ft_strncmp(env->vars[j], args[i], ft_strlen(args[i])) == 0
+				&& env->vars[j][ft_strlen(args[i])] == '=')
+			{
+				free(env->vars[j]);
+				k = j;
+				while (env->vars[k])
+					env->vars[k++] = env->vars[k + 1];
+				break ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	env_builtin(t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while (env->vars[i])
+	{
+		printf("%s\n", env->vars[i]);
+		i++;
+	}
+}
+
+void	exit_builtin(void)
+{
+	printf("exit\n");
+	exit(0);
 }

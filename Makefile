@@ -4,6 +4,8 @@ SRCS =	srcs/main.c								\
 		srcs/built_in.c							\
 		utils/utils.c							\
 		utils/ft_strcmp.c						\
+		utils/ft_strncmp.c						\
+		utils/ft_strlen.c						\
 		utils/ft_split.c						\
 		
 
