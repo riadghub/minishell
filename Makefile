@@ -5,6 +5,7 @@ SRCS =	srcs/main.c								\
 		srcs/built_in2.c						\
 		utils/utils.c							\
 		utils/ft_strcmp.c						\
+		utils/ft_strdup.c						\
 		utils/ft_strncmp.c						\
 		utils/ft_strlen.c						\
 		utils/ft_split.c						\
@@ -54,5 +55,8 @@ fclean : clean
 # Règle pour recompiler entièrement le projet
 re : fclean all
 	@echo "$(GREEN)Rebuild complete!$(RESET)"
+
+dev	 : re
+	valgrind --suppressions=/home/reeer-aa/C-Tronc-Commun/minishell/readline.supp -s --track-fds=yes --trace-children=yes --show-leak-kinds=all --leak-check=full -q ./minishell
 
 .PHONY: all clean fclean re run

@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:13:58 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/03 15:02:51 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:12:14 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ void	unset_builtin(char **args, t_env *env)
 				free(env->vars[j]);
 				k = j;
 				while (env->vars[k])
-					env->vars[k++] = env->vars[k + 1];
+				{
+					env->vars[k] = env->vars[k + 1];
+					k++;
+				}
 				break ;
 			}
 			j++;

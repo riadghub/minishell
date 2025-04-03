@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:38:54 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/03 14:04:28 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:09:45 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_env	init_env(char **envi)
 	i = 0;
 	while (i < count)
 	{
-		env.vars[i] = strdup(envi[i]);
+		env.vars[i] = ft_strdup(envi[i]);
 		i++;
 	}
 	env.vars[count] = NULL;
