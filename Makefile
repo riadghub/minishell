@@ -2,6 +2,7 @@ NAME = minishell
 
 SRCS =	srcs/main.c								\
 		srcs/built_in.c							\
+		srcs/built_in2.c						\
 		utils/utils.c							\
 		utils/ft_strcmp.c						\
 		utils/ft_strncmp.c						\
