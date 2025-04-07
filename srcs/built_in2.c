@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:02:30 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/03 15:02:56 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:36:39 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ void	env_builtin(t_env *env)
 	}
 }
 
-void	exit_builtin(void)
+void	exit_builtin(char **args, t_env *env)
 {
 	printf("exit\n");
+	free_all(env->vars);
+	free_all(args);
 	exit(0);
 }

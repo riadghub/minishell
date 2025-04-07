@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:38:54 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/03 15:09:45 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:43:44 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	execute_command(char *input, t_env *env)
 	char	**args;
 
 	args = ft_split(input, ' ');
+	if (!args || !args[0])
+		return (free_all(args));
 	if (args[0])
 	{
 		if (ft_strcmp(args[0], "echo") == 0)
@@ -36,11 +38,11 @@ void	execute_command(char *input, t_env *env)
 		else if (ft_strcmp(args[0], "env") == 0)
 			env_builtin(env);
 		else if (ft_strcmp(args[0], "exit") == 0)
-			exit_builtin();
+			exit_builtin(args, env);
 		else
 			printf("%s: command not found\n", args[0]);
+		free_all(args);
 	}
-	free_all(args);
 }
 
 t_env	init_env(char **envi)
@@ -65,7 +67,17 @@ t_env	init_env(char **envi)
 
 void	free_env(t_env *env)
 {
-	free_all(env->vars);
+	int	i;
+
+	i = 0;
+	if (!env || !env->vars)
+		return ;
+	while (env->vars[i])
+	{
+		free(env->vars[i]);
+		i++;
+	}
+	free(env->vars);
 }
 
 int	main(int argc, char **argv, char **envi)
