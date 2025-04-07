@@ -6,14 +6,16 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:38:54 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/07 14:43:44 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:11:40 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
+	bash --posix
 	penser a echo mais pas dans la sortie standard
+	gerer l'echo $?
 */
 
 void	execute_command(char *input, t_env *env)
