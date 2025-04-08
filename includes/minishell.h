@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:22:19 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/07 15:02:38 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:43:04 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					ft_strlen(char *str);
 int					is_numeric(const char *str);
 
 void				cd_builtin(char **args);
-void				echo_builtin(char **args);
+void				echo_builtin(char **args, t_env *env);
 void				env_builtin(t_env *env);
 void				execute_command(char *input, t_env *env);
 void				exit_builtin(char **args, t_env *env);

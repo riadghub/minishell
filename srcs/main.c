@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:38:54 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/07 15:11:40 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:54:03 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 	bash --posix
 	penser a echo mais pas dans la sortie standard
-	gerer l'echo $?
+	gerer ctrl+D ctrl+C ctrl+\
 */
 
 void	execute_command(char *input, t_env *env)
@@ -24,27 +24,51 @@ void	execute_command(char *input, t_env *env)
 
 	args = ft_split(input, ' ');
 	if (!args || !args[0])
-		return (free_all(args));
-	if (args[0])
 	{
-		if (ft_strcmp(args[0], "echo") == 0)
-			echo_builtin(args);
-		else if (ft_strcmp(args[0], "cd") == 0)
-			cd_builtin(args);
-		else if (ft_strcmp(args[0], "pwd") == 0)
-			pwd_builtin();
-		else if (ft_strcmp(args[0], "export") == 0)
-			export_builtin(args, env);
-		else if (ft_strcmp(args[0], "unset") == 0)
-			unset_builtin(args, env);
-		else if (ft_strcmp(args[0], "env") == 0)
-			env_builtin(env);
-		else if (ft_strcmp(args[0], "exit") == 0)
-			exit_builtin(args, env);
-		else
-			printf("%s: command not found\n", args[0]);
 		free_all(args);
+		return ;
 	}
+	if (ft_strcmp(args[0], "echo") == 0)
+	{
+		echo_builtin(args, env);
+		env->exit_code = 0;
+	}
+	else if (ft_strcmp(args[0], "cd") == 0)
+	{
+		cd_builtin(args);
+		env->exit_code = 0;
+	}
+	else if (ft_strcmp(args[0], "pwd") == 0)
+	{
+		pwd_builtin();
+		env->exit_code = 0;
+	}
+	else if (ft_strcmp(args[0], "export") == 0)
+	{
+		export_builtin(args, env);
+		env->exit_code = 0;
+	}
+	else if (ft_strcmp(args[0], "unset") == 0)
+	{
+		unset_builtin(args, env);
+		env->exit_code = 0;
+	}
+	else if (ft_strcmp(args[0], "env") == 0)
+	{
+		env_builtin(env);
+		env->exit_code = 0;
+	}
+	else if (ft_strcmp(args[0], "exit") == 0)
+	{
+		exit_builtin(args, env);
+		return ;
+	}
+	else
+	{
+		printf("minishell: %s: command not found\n", args[0]);
+		env->exit_code = 127;
+	}
+	free_all(args);
 }
 
 t_env	init_env(char **envi)
@@ -54,6 +78,7 @@ t_env	init_env(char **envi)
 	int		i;
 
 	count = 0;
+	env.exit_code = 0;
 	while (envi[count])
 		count++;
 	env.vars = malloc(sizeof(char *) * (count + 1));
@@ -104,6 +129,7 @@ int	main(int argc, char **argv, char **envi)
 		execute_command(input, &env);
 		free(input);
 	}
+	free_all(argv);
 	free_env(&env);
 	return (0);
 }

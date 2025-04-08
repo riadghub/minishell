@@ -6,27 +6,30 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:13:58 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/07 12:14:18 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:07:59 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	echo_builtin(char **args)
+void	echo_builtin(char **args, t_env *env)
 {
-	bool	n;
-	int		i;
+	int	n;
+	int	i;
 
-	n = false;
+	n = 0;
 	i = 1;
 	while (args[i] && ft_strcmp(args[i], "-n") == 0)
 	{
-		n = true;
+		n = 1;
 		i++;
 	}
 	while (args[i])
 	{
-		printf("%s", args[i]);
+		if (ft_strcmp(args[i], "$?") == 0)
+			printf("%d", env->exit_code);
+		else
+			printf("%s", args[i]);
 		if (args[i + 1])
 			printf(" ");
 		i++;
