@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:13:58 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/08 14:07:59 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:06:17 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,36 +82,6 @@ void	export_builtin(char **args, t_env *env)
 	while (args[i])
 	{
 		putenv(args[i]);
-		i++;
-	}
-}
-
-void	unset_builtin(char **args, t_env *env)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 1;
-	while (args[i])
-	{
-		j = 0;
-		while (env->vars[j])
-		{
-			if (ft_strncmp(env->vars[j], args[i], ft_strlen(args[i])) == 0
-				&& env->vars[j][ft_strlen(args[i])] == '=')
-			{
-				free(env->vars[j]);
-				k = j;
-				while (env->vars[k])
-				{
-					env->vars[k] = env->vars[k + 1];
-					k++;
-				}
-				break ;
-			}
-			j++;
-		}
 		i++;
 	}
 }

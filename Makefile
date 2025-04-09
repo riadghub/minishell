@@ -3,6 +3,9 @@ NAME = minishell
 SRCS =	srcs/main.c								\
 		srcs/built_in.c							\
 		srcs/built_in2.c						\
+		srcs/built_in3.c						\
+		srcs/execute.c							\
+		srcs/handler.c							\
 		utils/utils.c							\
 		utils/ft_atoi.c							\
 		utils/ft_strcmp.c						\
