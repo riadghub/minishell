@@ -9,6 +9,7 @@ SRCS =	srcs/main.c								\
 		utils/utils.c							\
 		utils/ft_atoi.c							\
 		utils/ft_strcmp.c						\
+		utils/ft_str_is_alpha.c					\
 		utils/ft_strdup.c						\
 		utils/ft_strncmp.c						\
 		utils/ft_strlen.c						\

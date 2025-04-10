@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:07:21 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/09 15:14:55 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/10 13:22:15 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	validate_exit_args(char **args, t_env *env)
 {
-	if (args[1] && !is_numeric(args[1]))
+	if (args[1] && !is_numeric(args[1]) || !is_long_range(args[1]))
 	{
 		printf("minishell: exit: %s: numeric argument required\n", args[1]);
 		env->exit_code = 2;
@@ -33,6 +33,7 @@ int	get_exit_code(char **args)
 {
 	int	exit_code;
 
+	exit_code = 0;
 	if (args[1])
 	{
 		exit_code = ft_atoi(args[1]);
@@ -45,13 +46,10 @@ int	get_exit_code(char **args)
 
 void	exit_builtin(char **args, t_env *env)
 {
-	if (!validate_exit_args(args, env))
-	{
-		free_all(args);
-		return ;
-	}
 	printf("exit\n");
-	env->exit_code = get_exit_code(args);
+	validate_exit_args(args, env);
+	if (env->exit_code != 2)
+		env->exit_code = get_exit_code(args);
 	free_all(args);
 	free_env(env);
 	exit(env->exit_code);

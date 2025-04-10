@@ -6,7 +6,7 @@
 /*   By: reeer-aa <reeer-aa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:38:54 by reeer-aa          #+#    #+#             */
-/*   Updated: 2025/04/09 15:15:14 by reeer-aa         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:53:05 by reeer-aa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 /*
 	bash --posix
 	penser a echo mais pas dans la sortie standard
-	corriger exit + argument
+	unset a regler
+	trier env
+	faire l'interactive mod cf. posix
 */
 
 t_env	init_env(char **envi)
