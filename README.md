@@ -1,6 +1,6 @@
 # minishell - 42 School
 
-Shell bash-like complet. Parsing commandes, pipes/redirections, builtins, heredoc, signals. **Compatible bash syntaxe + norme 42**. **Collab avec [gekid00](https://github.com/gekid00)**.
+Shell bash-like complet. Parsing commandes, pipes/redirections, builtins, heredoc, signals. **Collab avec [gekid00](https://github.com/gekid00)**.
 
 ![Screenshot](minishell.png)
 
