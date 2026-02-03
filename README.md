@@ -2,7 +2,7 @@
 
 Shell bash-like complet. Parsing commandes, pipes/redirections, builtins, heredoc, signals. **Compatible bash syntaxe + norme 42**. **Collab avec [gekid00](https://github.com/gekid00)**.
 
-![Screenshot](screenshots/minishell.gif)
+![Screenshot](minishell.png)
 
 ## Features
 - **Parsing** : Quotes "'\"", $VAR expand, split espaces/tabs
