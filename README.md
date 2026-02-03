@@ -15,5 +15,4 @@ Shell bash-like complet. Parsing commandes, pipes/redirections, builtins, heredo
 ## Installation
 ```bash
 make
-# ou
-make bonus  # Multi-commande heredoc
+
